@@ -20,6 +20,5 @@
                 <p>Lunes a viernes: 7:30 a. m. a 5:30 p. m.</p>
             </div>
         </div>
-        <p class="is-size-7 mt-5">Sitio de práctica. Josue Rivera clase de Portales Web II.</p>
     </div>
 </footer>

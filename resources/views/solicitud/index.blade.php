@@ -18,7 +18,6 @@
     <div class="container">
         <div class="columns is-variable is-8">
 
-            {{-- Formulario --}}
             <div class="column is-7">
                 @if (session('enviado'))
                     <div class="notification is-success is-light" role="status">
@@ -28,6 +27,7 @@
 
                 <form method="POST" action="{{ route('solicitud.store') }}" novalidate>
                     @csrf
+
 
                     <div class="campo-oculto" aria-hidden="true">
                         <label>No llenar este campo <input type="text" name="sitio_web" tabindex="-1" autocomplete="off"></label>
@@ -130,7 +130,6 @@
                 </form>
             </div>
 
-            {{-- Datos de contacto --}}
             <div class="column is-5">
                 <h2 class="title is-4">Nuestra oficina</h2>
                 <dl class="contacto-datos">
@@ -150,7 +149,6 @@
                     </dd>
                 </dl>
 
-                <p class="help mt-2">Datos de contacto de ejemplo.</p>
             </div>
         </div>
     </div>

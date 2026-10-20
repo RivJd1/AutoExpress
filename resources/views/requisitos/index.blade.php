@@ -2,7 +2,6 @@
 
 @section('titulo', 'Requisitos')
 
-{{-- CSS solo de esta página --}}
 @section('estilos')
 <style>
     details { border-bottom: 1px solid #ddd; padding: 1rem 0; max-width: 46rem; }
@@ -24,10 +23,6 @@
 
 <section class="section">
     <div class="container">
-        <div class="message is-warning mb-6">
-            <div class="message-body">Información ilustrativa. Las condiciones finales se detallan en el contrato de cada alquiler.</div>
-        </div>
-
         <div class="columns">
             <div class="column">
                 <h2 class="title is-3">Documentos</h2>
@@ -35,7 +30,7 @@
                     <ul>
                         <li><strong>Licencia de conducir vigente.</strong> A nombre de quien manejará el vehículo.</li>
                         <li><strong>Identificación vigente.</strong> Documento de identidad o pasaporte.</li>
-                        <li><strong>Mayoría de edad.</strong> Edad mínima de ejemplo: 21 años.</li>
+                        <li><strong>Mayoría de edad.</strong> Edad mínima para contratar el servicio.</li>
                     </ul>
                 </div>
             </div>

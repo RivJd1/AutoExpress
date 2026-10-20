@@ -2,7 +2,6 @@
 
 @section('titulo', 'Servicios')
 
-{{-- CSS solo de esta página --}}
 @section('estilos')
 <style>
     .servicio { border-top: 4px solid var(--bulma-primary); }
@@ -50,7 +49,12 @@
 <section class="section has-background-light">
     <div class="container">
         <div class="columns is-vcentered">
-            <div class="column is-12">
+            <div class="column is-6">
+                <figure class="image is-3by2">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80" alt="Entrega de llaves">
+                </figure>
+            </div>
+            <div class="column is-6">
                 <h2 class="title is-3">Entrega y recogida</h2>
                 <div class="content">
                     <ul>

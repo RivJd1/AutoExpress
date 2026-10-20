@@ -23,20 +23,24 @@
 <section class="section">
     <div class="container">
         <div class="columns is-variable is-8">
-
             <div class="column is-7">
+                @if (session('exito'))
+                    <div class="notification is-success is-light">
+                        Gracias, {{ session('exito') }}. Recibimos su solicitud y le responderemos en horario de oficina.
+                    </div>
+                @endif
 
-                <div id="gracias" class="notification is-success is-light is-hidden">
-                    Gracias. Este formulario es solo una demostración visual: los datos no se envían ni se guardan.
-                </div>
-
-                <form onsubmit="event.preventDefault(); document.getElementById('gracias').classList.remove('is-hidden');">
+                <form method="POST" action="/contacto">
+                    @csrf
 
                     <div class="field">
-                        <label class="label" for="nombre">Nombre completo</label>
+                        <label class="label" for="nombre_completo">Nombre completo</label>
                         <div class="control">
-                            <input id="nombre" class="input" type="text" required>
+                            <input id="nombre_completo" name="nombre_completo" type="text"
+                                   class="input @error('nombre_completo') is-danger @enderror"
+                                   value="{{ old('nombre_completo') }}">
                         </div>
+                        @error('nombre_completo') <p class="help is-danger">{{ $message }}</p> @enderror
                     </div>
 
                     <div class="columns">
@@ -44,68 +48,82 @@
                             <div class="field">
                                 <label class="label" for="telefono">Teléfono o WhatsApp</label>
                                 <div class="control">
-                                    <input id="telefono" class="input" type="tel" required>
+                                    <input id="telefono" name="telefono" type="tel"
+                                           class="input @error('telefono') is-danger @enderror"
+                                           value="{{ old('telefono') }}">
                                 </div>
+                                @error('telefono') <p class="help is-danger">{{ $message }}</p> @enderror
                             </div>
                         </div>
                         <div class="column">
                             <div class="field">
                                 <label class="label" for="correo">Correo (opcional)</label>
                                 <div class="control">
-                                    <input id="correo" class="input" type="email">
+                                    <input id="correo" name="correo" type="email"
+                                           class="input @error('correo') is-danger @enderror"
+                                           value="{{ old('correo') }}">
                                 </div>
+                                @error('correo') <p class="help is-danger">{{ $message }}</p> @enderror
                             </div>
                         </div>
                     </div>
 
                     <div class="field">
-                        <label class="label" for="vehiculo">Vehículo de interés (opcional)</label>
+                        <label class="label" for="vehicle_id">Vehículo de interés (opcional)</label>
                         <div class="control">
-                            <div class="select is-fullwidth">
-                                <select id="vehiculo">
-                                    <option>Todavía no lo he decidido</option>
-                                    <optgroup label="Sedanes">
-                                        <option>Toyota Corolla 2022</option>
-                                        <option>Chevrolet Camaro ZL1</option>
-                                    </optgroup>
-                                    <optgroup label="Hatchbacks">
-                                        <option>BMW Serie 4 Coupé</option>
-                                        <option>Chevrolet Camaro SS</option>
-                                    </optgroup>
-                                    <optgroup label="Camionetas">
-                                        <option>Ford Expedition</option>
-                                        <option>Ford Escape</option>
-                                    </optgroup>
-                                    <optgroup label="Pickups">
-                                        <option>Toyota Hilux 2022</option>
-                                        <option>Volkswagen Amarok Canyon</option>
-                                    </optgroup>
+                            <div class="select is-fullwidth @error('vehicle_id') is-danger @enderror">
+                                <select id="vehicle_id" name="vehicle_id">
+                                    <option value="">Todavía no lo he decidido</option>
+                                    @foreach ($categories as $c)
+                                        <optgroup label="{{ $c->nombre }}">
+                                            @foreach ($c->vehicles as $v)
+                                                <option value="{{ $v->id }}" @selected(old('vehicle_id', $selected) == $v->id)>
+                                                    {{ $v->nombreCompleto() }}
+                                                </option>
+                                            @endforeach
+                                        </optgroup>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
+                        @error('vehicle_id') <p class="help is-danger">{{ $message }}</p> @enderror
                     </div>
 
                     <div class="columns">
                         <div class="column">
                             <div class="field">
-                                <label class="label" for="recogida">Fecha de recogida (opcional)</label>
-                                <div class="control"><input id="recogida" class="input" type="date"></div>
+                                <label class="label" for="fecha_recogida">Fecha de recogida (opcional)</label>
+                                <div class="control">
+                                    <input id="fecha_recogida" name="fecha_recogida" type="date"
+                                           class="input @error('fecha_recogida') is-danger @enderror"
+                                           value="{{ old('fecha_recogida') }}">
+                                </div>
+                                @error('fecha_recogida') <p class="help is-danger">{{ $message }}</p> @enderror
                             </div>
                         </div>
                         <div class="column">
                             <div class="field">
-                                <label class="label" for="devolucion">Fecha de devolución (opcional)</label>
-                                <div class="control"><input id="devolucion" class="input" type="date"></div>
+                                <label class="label" for="fecha_entrega">Fecha de entrega (opcional)</label>
+                                <div class="control">
+                                    <input id="fecha_entrega" name="fecha_entrega" type="date"
+                                           class="input @error('fecha_entrega') is-danger @enderror"
+                                           value="{{ old('fecha_entrega') }}">
+                                </div>
+                                @error('fecha_entrega') <p class="help is-danger">{{ $message }}</p> @enderror
                             </div>
                         </div>
                     </div>
 
                     <div class="field">
-                        <label class="label" for="mensaje">Mensaje (opcional)</label>
-                        <div class="control"><textarea id="mensaje" class="textarea" rows="4"></textarea></div>
+                        <label class="label" for="observacion">Observación (opcional)</label>
+                        <div class="control">
+                            <textarea id="observacion" name="observacion" rows="4"
+                                      class="textarea @error('observacion') is-danger @enderror">{{ old('observacion') }}</textarea>
+                        </div>
+                        @error('observacion') <p class="help is-danger">{{ $message }}</p> @enderror
                     </div>
 
-                    <button class="button is-primary is-medium has-text-weight-bold" type="submit">Enviar consulta</button>
+                    <button class="button is-primary is-medium has-text-weight-bold" type="submit">Enviar solicitud</button>
                 </form>
             </div>
 
@@ -117,7 +135,7 @@
                     <dt>Teléfono</dt>
                     <dd>+504 2400-0000</dd>
                     <dt>Correo</dt>
-                    <dd>info@autorentaexpress.example</dd>
+                    <dd>info@autorentaexpress.com</dd>
                     <dt>Horario</dt>
                     <dd>
                         Lunes a viernes: 7:30 a. m. a 5:30 p. m.<br>
@@ -126,7 +144,14 @@
                     </dd>
                 </dl>
 
-                <p class="help mt-2">Datos de contacto de ejemplo.</p>
+                <figure class="image is-3by2 mb-4">
+                    <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=900&q=80" alt="Oficina de AutoRenta Express">
+                </figure>
+
+                <figure class="image is-4by3">
+                    <iframe class="has-ratio" title="Mapa de La Ceiba" loading="lazy"
+                            src="https://www.google.com/maps?q=Barrio+El+Centro,+La+Ceiba,+Honduras&output=embed"></iframe>
+                </figure>
             </div>
 
         </div>

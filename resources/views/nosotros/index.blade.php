@@ -38,6 +38,14 @@
     </div>
 </section>
 
+<section class="section pt-0">
+    <div class="container">
+        <figure class="image is-16by9">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1280&q=80" alt="La Ceiba, Atlántida">
+        </figure>
+    </div>
+</section>
+
 <section class="hero is-black is-medium">
     <div class="hero-body">
         <div class="container">
