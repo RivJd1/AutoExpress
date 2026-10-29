@@ -145,12 +145,7 @@
                 </dl>
 
                 <figure class="image is-3by2 mb-4">
-                    <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=900&q=80" alt="Oficina de AutoRenta Express">
-                </figure>
-
-                <figure class="image is-4by3">
-                    <iframe class="has-ratio" title="Mapa de La Ceiba" loading="lazy"
-                            src="https://www.google.com/maps?q=Barrio+El+Centro,+La+Ceiba,+Honduras&output=embed"></iframe>
+                    <img src="https://koala.sh/api/image/v2-afuyr-b9lt9.jpg?width=1216&height=832&dream" alt="Oficina de AutoRenta Express">
                 </figure>
             </div>
 

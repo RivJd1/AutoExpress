@@ -22,7 +22,7 @@ class VehicleForm
                     ->helperText('Ejemplo: Corolla 2022')
                     ->required()
                     ->maxLength(255),
-                TextInput::make('pasajeros')->numeric()->minValue(1)->maxValue(15)->required(),
+                TextInput::make('pasajeros')->numeric()->minValue(1)->maxValue(30)->required(),
                 Select::make('transmision')
                     ->label('Transmisión')
                     ->options(['manual' => 'Manual', 'automatico' => 'Automática'])

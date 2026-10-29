@@ -17,10 +17,6 @@ class CategoryForm
                 Textarea::make('descripcion')
                     ->default(null)
                     ->columnSpanFull(),
-                TextInput::make(
-                    'nombre')->required()->maxLength(255),
-                Textarea::make(
-                    'descripcion')->columnSpanFull(),
             ]);
     }
 }

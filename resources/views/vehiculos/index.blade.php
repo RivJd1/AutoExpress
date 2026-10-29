@@ -39,7 +39,7 @@
 
             <div class="columns is-multiline">
                 @foreach ($c->vehicles as $v)
-                    <div class="column is-6">
+                    <div class="column is-3">
                         @include('partials.vehicle-card', ['v' => $v])
                     </div>
                 @endforeach
